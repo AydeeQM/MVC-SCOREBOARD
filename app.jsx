@@ -58,6 +58,11 @@ class Model {
             this.gamers[id].score--;
             this.notify();
       }
+
+      addPoint(id){
+            let total = this.gamers.reduce((prev, cur) => prev + cur.score, 0);
+            return total;
+      }
 }
 
 const ScoreBoard = ({ title, model }) => {
@@ -81,11 +86,11 @@ const ScoreBoard = ({ title, model }) => {
                               <div className="col-md-10">
                                     <table className="stats"><tbody>
                                           <tr>
-                                                <td>PLAYERS:</td>
+                                                <td>PLAYERS:{model.gamers.length}</td>
                                                 <td></td>
                                           </tr>
                                           <tr>
-                                                <td>TOTAL POINTS:</td>
+                                                <td>TOTAL POINTS:{model.addPoint()}</td>
                                                 <td></td>
                                           </tr>
                                     </tbody></table>
