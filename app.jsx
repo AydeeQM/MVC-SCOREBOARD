@@ -6,15 +6,18 @@ class Model {
             this.gamers = [
                   {
                         name: "Jim Hoskins",
-                        score: 31
+                        score: 31,
+                        id: 1
                   },
                   {
                         name: "Andree Hoskins",
-                        score: 35
+                        score: 35,
+                        id: 2
                   },
                   {
                         name: "Alena Hoskins",
-                        score: 42
+                        score: 42,
+                        id: 3
                   },
             ];
             this.inputValue = null;
@@ -36,6 +39,7 @@ class Model {
             this.gamers.push({
                   name: newGamer,
                   score: 0,
+                  id: this.cont + 1,
             });
             this.index++;
             this.notify();
@@ -45,15 +49,13 @@ class Model {
             this.notify();
       }
 
-      increment() {
-            this.gamers[this.cont].score++;
-            this.cont++;
+      increment(id) {
+            this.gamers[id].score++;
             this.notify();
       }
 
-      decrement() {
-            this.gamers[this.men].score--;
-            this.men++;
+      decrement(id) {
+            this.gamers[id].score--;
             this.notify();
       }
 }
@@ -66,7 +68,7 @@ const ScoreBoard = ({ title, model }) => {
                   <div className="player-score counter">
                         <button className="counter-action decrement" onClick={() => model.decrement(index)}>-</button>
                         <div className="counter-score"><input name="resultado" id="resultado" value={option.score} /></div>
-                        <button className="counter-action increment" onClick={() => model.increment()}>+</button>
+                        <button className="counter-action increment" onClick={() => model.increment(index)}>+</button>
                   </div>
             </div>
 
