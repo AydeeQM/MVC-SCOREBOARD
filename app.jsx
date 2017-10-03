@@ -1,7 +1,20 @@
 class Model {
       constructor() {
             this.index = 0;
-            this.name = ["Jim Hoskins", "Andree Hoskins", "Alena Hoskins"];
+            this.gamers = [
+                  {
+                    name: "Jim Hoskins",
+                    score: 31
+                  },
+                  {
+                    name: "Andree Hoskins",
+                    score: 35
+                  },
+                  {
+                    name: "Alena Hoskins",
+                    score: 42
+                  },
+                ];
             this.inputValue = null;
             this.callback = null;
       }
@@ -18,7 +31,10 @@ class Model {
             return this.score[this.index];
       }
       addGamerAt(newGamer, index) {
-            this.name.push(newGamer);
+            this.gamers.push({
+                  name: newGamer,
+                  score: 0
+               });
             this.index++;
             this.notify();
       }
@@ -29,13 +45,23 @@ class Model {
 }
 
 const ScoreBoard = ({ title, model }) => {
-      let playerList = model.name.map((option, index) => {
+      let addvalor = (index) => {
+            value = isNaN(value) ? 0 : value;
+            if (value >= valorMaximo) {
+                  value = valorMaximo;
+            } else {
+                  value++;
+            }
+            return value;
+      }
+
+      let playerList = model.gamers.map((option, index) => {
             return (<div className="player">
-                  <div className="player-name col-md-10">{option}</div>
+                  <div className="player-name col-md-10">{option.name}</div>
                   <div className="player-score counter">
-                        <div className="counter-action decrement">-</div>
-                        <div className="counter-score">0</div>
-                        <div className="counter-action increment">+</div>
+                        <div className="counter-action decrement"><a href="#" onclick="addValor(index); return false;">-</a></div>
+                        <div className="counter-score"><input name="resultado" id="resultado" value={option.score} /></div>
+                        <div className="counter-action increment"><a href="#" onclick="incrementaValor(index);return false;">+</a></div>
                   </div>
             </div>
 
