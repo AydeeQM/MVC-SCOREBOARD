@@ -1,20 +1,22 @@
 class Model {
       constructor() {
             this.index = 0;
+            this.cont = 0;
+            this.men = 0;
             this.gamers = [
                   {
-                    name: "Jim Hoskins",
-                    score: 31
+                        name: "Jim Hoskins",
+                        score: 31
                   },
                   {
-                    name: "Andree Hoskins",
-                    score: 35
+                        name: "Andree Hoskins",
+                        score: 35
                   },
                   {
-                    name: "Alena Hoskins",
-                    score: 42
+                        name: "Alena Hoskins",
+                        score: 42
                   },
-                ];
+            ];
             this.inputValue = null;
             this.callback = null;
       }
@@ -33,8 +35,8 @@ class Model {
       addGamerAt(newGamer, index) {
             this.gamers.push({
                   name: newGamer,
-                  score: 0
-               });
+                  score: 0,
+            });
             this.index++;
             this.notify();
       }
@@ -42,26 +44,29 @@ class Model {
             this.name[index] = player;
             this.notify();
       }
+
+      increment() {
+            this.gamers[this.cont].score++;
+            this.cont++;
+            this.notify();
+      }
+
+      decrement() {
+            this.gamers[this.men].score--;
+            this.men++;
+            this.notify();
+      }
 }
 
 const ScoreBoard = ({ title, model }) => {
-      let addvalor = (index) => {
-            value = isNaN(value) ? 0 : value;
-            if (value >= valorMaximo) {
-                  value = valorMaximo;
-            } else {
-                  value++;
-            }
-            return value;
-      }
 
       let playerList = model.gamers.map((option, index) => {
             return (<div className="player">
                   <div className="player-name col-md-10">{option.name}</div>
                   <div className="player-score counter">
-                        <div className="counter-action decrement"><a href="#" onclick="addValor(index); return false;">-</a></div>
+                        <button className="counter-action decrement" onClick={() => model.decrement(index)}>-</button>
                         <div className="counter-score"><input name="resultado" id="resultado" value={option.score} /></div>
-                        <div className="counter-action increment"><a href="#" onclick="incrementaValor(index);return false;">+</a></div>
+                        <button className="counter-action increment" onClick={() => model.increment()}>+</button>
                   </div>
             </div>
 
