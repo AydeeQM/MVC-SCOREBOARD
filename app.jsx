@@ -72,7 +72,7 @@ const ScoreBoard = ({ title, model }) => {
                   <div className="player-name col-md-10">{option.name}</div>
                   <div className="player-score counter">
                         <button className="counter-action decrement" onClick={() => model.decrement(index)}>-</button>
-                        <div className="counter-score"><input name="resultado" id="resultado" value={option.score} /></div>
+                        <div className="counter-score">{option.score}</div>
                         <button className="counter-action increment" onClick={() => model.increment(index)}>+</button>
                   </div>
             </div>
@@ -86,12 +86,12 @@ const ScoreBoard = ({ title, model }) => {
                               <div className="col-md-10">
                                     <table className="stats"><tbody>
                                           <tr>
-                                                <td>PLAYERS:{model.gamers.length}</td>
-                                                <td></td>
+                                                <td>PLAYERS:</td>
+                                                <td>{model.gamers.length}</td>
                                           </tr>
                                           <tr>
-                                                <td>TOTAL POINTS:{model.addPoint()}</td>
-                                                <td></td>
+                                                <td>TOTAL POINTS:</td>
+                                                <td>{model.addPoint()}</td>
                                           </tr>
                                     </tbody></table>
                               </div>
