@@ -36,17 +36,16 @@ class Model {
             return this.score[this.index];
       }
       addGamerAt(newGamer, index) {
-            this.gamers.push({
-                  name: newGamer,
-                  score: 0,
-                  id: this.cont + 1,
-            });
-            this.index++;
-            this.notify();
-      }
-      updateTodo(index, player) {
-            this.name[index] = player;
-            this.notify();
+            if (this.inputValue.value != null || this.inputValue.value != '') {
+                  this.gamers.push({
+                        name: this.inputValue.value,
+                        score: 0,
+                        id: this.cont + 1,
+                  });
+                  this.index++;
+                  this.inputValue.value = "";
+                  this.notify();
+            }
       }
 
       increment(id) {
@@ -59,7 +58,7 @@ class Model {
             this.notify();
       }
 
-      addPoint(id){
+      addPoint(id) {
             let total = this.gamers.reduce((prev, cur) => prev + cur.score, 0);
             return total;
       }
@@ -111,7 +110,7 @@ const ScoreBoard = ({ title, model }) => {
                                     model.addGamerAt(model.inputValue);
                               }}
                         >
-                              <input type="text" placeholder="enter name" onChange={e => (model.inputValue = e.target.value)} />
+                              <input type="text" placeholder="enter name" onChange={e => (model.inputValue = e.target)} />
                               <input type="submit" value="Add Player" />
                         </form>
                   </div>
